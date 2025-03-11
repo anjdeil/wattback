@@ -1,0 +1,43 @@
+@import '../../../styles/variables';
+
+.customRadio {
+    display: flex;
+    align-items: center;
+
+    & span {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    &__radio {
+        display: none;
+
+        &:checked + span.customRadio__circle {
+            border: 1px solid $orange-color;
+            position: relative;
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 12px;
+                height: 12px;
+                background-color: $orange-color;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    &__circle {
+        width: 24px;
+        height: 24px;
+        border: 1px solid $orange-color-transparent;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 8px;
+    }
+}

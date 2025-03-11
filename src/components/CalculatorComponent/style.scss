@@ -1,0 +1,134 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.calculatorComponent {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+
+    & h2 {
+        font-size: 40px;
+        line-height: 48px;
+        font-weight: 600;
+        color: $white;
+    }
+
+    & h3,
+    & h4 {
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: 500;
+    }
+
+    & p {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+
+        @include tablet {
+           flex-direction: column;
+        }
+    }
+
+    &__block {
+        border: 1px solid $border-color;
+        border-radius: 16px;
+        padding: 32px 24px;
+        box-shadow: 0px 4px 40px 0px #0000000D;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 24px;
+
+        &--left {
+            width: 59%;
+        }
+
+        &--right {
+            width: 39%;
+            padding: 32px 40px;
+            border: 1px solid $orange-color;
+            background: radial-gradient(118.06% 140.32% at 74.23% -1.32%, $orange-color 0%, rgba(241, 126, 0, 0) 100%);
+            row-gap: 18px;
+        }
+
+        @include tablet {
+            width: 100%;
+        }
+    }
+
+    &__titleBlock {
+        display: flex;
+        flex-direction: column;
+        row-gap: 12px;
+        align-items: center;
+    }
+
+    &__innerBlock {
+        padding: 40px;
+        border: 1px solid $border-color;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 40px;
+    }
+
+    &__formBlock {
+        display: flex;
+        flex-direction: column;
+        row-gap: 32px;
+
+        & p {
+            text-align: left;
+            font-size: 18px;
+        }
+    }
+
+    &__label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 41px;
+
+        &--bottom {
+            gap: 24px;
+        }
+
+        & p {
+            text-align: left;
+            font-size: 18px;
+        }
+    }
+
+    &__input {
+        width: fit-content;
+        max-width: 150px;
+        padding: 12px 24px;
+        text-align: center;
+        color: $black;
+        border: 1px solid $orange-color;
+        background: $background-color;
+        border-radius: 40px;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    &__radioBlock {
+        display: flex;
+        gap: 40px;
+    }
+
+    &__button {
+        min-width: 256px;
+        padding-block: 16px;
+    }
+
+    &__bottom {
+        @include page-grid;
+    }
+}
