@@ -1,8 +1,9 @@
-@import '../../../styles/variables';
+@use '../../../styles/variables' as *;
 
 .customRadio {
     display: flex;
     align-items: center;
+    cursor: pointer;
 
     & span {
         font-size: 18px;
