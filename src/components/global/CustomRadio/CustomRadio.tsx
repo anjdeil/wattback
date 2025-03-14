@@ -7,9 +7,10 @@ type CustomRadioType = {
     value: string;
     checked: boolean;
     change: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    disabled: boolean;
 }
 
-const CustomRadio: FC<CustomRadioType> = ({ label, name, value, checked, change }) => {
+const CustomRadio: FC<CustomRadioType> = ({ label, name, value, checked, change, disabled = false }) => {
     return (
         <label className="customRadio">                  
             <input
@@ -20,6 +21,7 @@ const CustomRadio: FC<CustomRadioType> = ({ label, name, value, checked, change 
                 onChange={change}
                 className="customRadio__radio"
                 aria-hidden={true}
+                disabled={disabled}
             />
             <span className="customRadio__circle"></span>
             <span>{label}</span>            

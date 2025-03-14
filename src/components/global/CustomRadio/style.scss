@@ -29,6 +29,10 @@
                 border-radius: 50%;
             }
         }
+
+        &:disabled  ~ span {
+            opacity: 0.5;
+        }
     }
 
     &__circle {

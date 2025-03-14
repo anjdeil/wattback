@@ -49,6 +49,7 @@
         text-align: center;
         width: auto;
         min-width: 161px;
+        min-height: 48px;
         padding: 12px 24px;
         color: $black;
         background-color: $white;
@@ -59,5 +60,22 @@
         &--left {
             min-width: 129px;
         }
+    }
+}
+
+.skeleton-wave {
+    width: 161px;
+    height: 48px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.2) 75%);
+    background-size: 200% 100%;
+    animation: wave-animation 2s infinite linear;
+}
+
+@keyframes wave-animation {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
     }
 }
