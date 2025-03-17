@@ -13,7 +13,7 @@ const CalculatorPage = () => {
             </div>
             <div className="calculator__block calculator__block--bottom">
                 <div>
-                    <h3>Installing a solar system is not just savings, but also your income, freedom from rising prices, and a stable future. Your investment will pay off, turning solar energy into steady profit.</h3>
+                    <h3>Installing a solar system is not just savings, but also your income, freedom from rising prices, and a stable future. Your investment will pay off, turning solar energy into steady profit!</h3>
                     <p>Submit your application now and receive a personalized discount!</p>
                 </div>
                 <button className="button calculator__button">Submit an application</button>
