@@ -36,7 +36,7 @@ const reducer = (state: State, action: Action): State => ({
 });
 
 const CalculatorComponent: FC = () => {
-  const [amount, setAmount] = useState<number | null>(null);
+  const [amount, setAmount] = useState<number>(0);
   const [phase, setPhase] = useState(phaseOptions[0].value);
   const [type, setType] = useState(typeOptions[0].value);  
   const [calculatorSettings, setCalculatorSettings] = useState<CalculatorSettings | null>(null);
@@ -115,7 +115,7 @@ const CalculatorComponent: FC = () => {
                   value={amount ?? ''}
                   onChange={e => {
                     const value = e.target.value;
-                    setAmount(value ? +value : null);
+                    setAmount(value ? +value : 0);
                   }}
                   className="calculatorComponent__input"
                   required
@@ -155,11 +155,7 @@ const CalculatorComponent: FC = () => {
                   />
                 ))}                
               </div>
-            </div>
-            <div className="calculatorComponent__label calculatorComponent__label--bottom">
-              <p>Click "Calculate" to see the suitable system and your savings. It's that simple!</p>
-              {/* <button className="button calculatorComponent__button" onClick={calculate}>Calculate</button> */}
-            </div>
+            </div>            
           </div>
         </div>
         <div className="calculatorComponent__block calculatorComponent__block--right">
