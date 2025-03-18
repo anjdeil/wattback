@@ -1,9 +1,9 @@
-import CalculatorPage from './pages/CalculatorPage';
+import CalculatorComponent from './components/CalculatorComponent/CalculatorComponent';
 import './styles/main.scss';
 
 function App() {
   return (
-    <CalculatorPage />
+    <CalculatorComponent />
   )
 }
 

@@ -8,12 +8,14 @@ type CalculatorSavingBlockType = {
     unit: string;
     vat?: boolean;
     left?: boolean;
+    total?: boolean;
 }
 
-const CalculatorSavingBlock: FC<CalculatorSavingBlockType> = ({ title, text, value, unit, vat = false, left = false}) => {
+const CalculatorSavingBlock: FC<CalculatorSavingBlockType> = ({ title, text, value, unit, vat = false, left = false, total = false}) => {
     const blockClass = `calculatorSavingBlock__block ${left ? 'calculatorSavingBlock__block--left' : ''}`;
     const mainClass = `calculatorSavingBlock ${left ? 'calculatorSavingBlock--left' : ''}`;
     const infoClass = `calculatorSavingBlock__info ${left ? 'calculatorSavingBlock__info--left' : ''}`;
+    const totalClass = `calculatorSavingBlock__total ${total ? 'calculatorSavingBlock__total--border' : ''}`;
    
     const infoContent = value ? (
         <span className={infoClass}>
@@ -24,11 +26,13 @@ const CalculatorSavingBlock: FC<CalculatorSavingBlockType> = ({ title, text, val
     );
 
     return (
-        <div className={mainClass}>
-            <h4>{title}</h4>
-            <div className={blockClass}>
-                <p>{text}</p>
-                {infoContent}
+        <div className={totalClass}>
+            <div className={mainClass}>
+                <h4>{title}</h4>
+                <div className={blockClass}>
+                    <p>{text}</p>
+                    {infoContent}
+                </div>
             </div>
         </div>
     )

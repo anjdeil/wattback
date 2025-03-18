@@ -2,15 +2,13 @@
 @use '../../styles/mixins' as *;
 
 .calculatorComponent {
-    display: flex;
-    flex-direction: column;
-    row-gap: 24px;
+    @include container;
+    background-color: $background-color;
 
-    & h2 {
-        font-size: 40px;
-        line-height: 48px;
-        font-weight: 600;
-        color: $white;
+    &__container {
+        display: flex;
+        flex-direction: column;
+        row-gap: 47px;
     }
 
     & h3,
@@ -32,7 +30,7 @@
     &__top {
         display: flex;
         justify-content: space-between;
-        gap: 24px;
+        gap: 47px;
 
         @include tablet {
            flex-direction: column;
@@ -47,7 +45,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        row-gap: 24px;
+        justify-content: space-between;
+        row-gap: 40px;
 
         &--left {
             width: 59%;
@@ -57,8 +56,8 @@
             width: 39%;
             padding: 32px 40px;
             border: 1px solid $orange-color;
-            background: radial-gradient(118.06% 140.32% at 74.23% -1.32%, $orange-color 0%, rgba(241, 126, 0, 0) 100%);
             row-gap: 18px;
+            background: linear-gradient(180deg, $white 0%, $orange-color 100%);
         }
 
         @include tablet {
@@ -74,11 +73,13 @@
     }
 
     &__innerBlock {
-        padding: 40px;
+        padding: 60px 40px;
         border: 1px solid $border-color;
         border-radius: 12px;
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
+        flex-grow: 1;
         row-gap: 40px;
     }
 
