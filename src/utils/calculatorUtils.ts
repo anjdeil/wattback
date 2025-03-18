@@ -11,7 +11,7 @@ export const calculateCost = (number: string, price: string, type: string, calcu
         case 'flat':
             return (+number * +calculatorSettings.add_pay_for_flat) + +price;
         case 'ground':
-            return (+number * +calculatorSettings.add_pay_for_ground) + +price;
+            return (+number * +calculatorSettings.add_pay_for_ground + +calculatorSettings.add_pay_for_ground) + +price;
         default:
             return +price;
     }
