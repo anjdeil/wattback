@@ -1,5 +1,7 @@
 import { ChangeEvent, FC, useCallback, useEffect, useReducer, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { fetchCalculatorSettings } from '../../api/api';
+import translations from '../../translation/translation';
 import { CalculatorSettings } from '../../types/types';
 import { calculateCost, calculateSavings, getPhaseData } from '../../utils/calculatorUtils';
 import CalculatorSavingBlock from '../global/CalculatorSavingBlock/CalculatorSavingBlock';
@@ -44,6 +46,11 @@ const CalculatorComponent: FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const { pathname } = useLocation(); 
+  const lang = pathname.split("/")[1];
+
+  const t = translations[lang] || translations["en"];
+
   useEffect(() => {
       const fetchData = async () => {
     try {
@@ -51,7 +58,7 @@ const CalculatorComponent: FC = () => {
       setCalculatorSettings(settings);
     } catch (error) {
       console.error("Error fetching calculator settings:", error);
-      setError("Failed to load calculator settings. Please try again later.");
+      setError(t.error);
     } finally {
       setLoading(false);
     }
@@ -101,15 +108,15 @@ const CalculatorComponent: FC = () => {
         <div className="calculatorComponent__top">
           <div className="calculatorComponent__block calculatorComponent__block--left">
             <div className="calculatorComponent__titleBlock">
-              <h3>Outcome calculator simulator</h3>
+              <h3>{t.title}</h3>
               {error && <h4 className="calculatorComponent__error">{error}</h4>}
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In imperdiet pretium risus ut.</p>
+              <p>{t.subtitle}</p>
             </div>
             <div className="calculatorComponent__innerBlock">
               <div className="calculatorComponent__formBlock">
-                <h3>Specify the average cost per invoice from EAC.</h3>
+                <h3>{t.invoiceLabel}</h3>
                 <label className="calculatorComponent__label">
-                  <p>For accurate calculations, use the average amount from the last six invoices/€</p>
+                  <p>{t.invoiceText}</p>
                   <input
                     type="number"
                     name="amount"
@@ -125,12 +132,12 @@ const CalculatorComponent: FC = () => {
                 </label>
               </div>
               <div className="calculatorComponent__formBlock">
-                <h3>Select the number of phases in your network as indicated on the invoice</h3>
+                <h3>{t.phaseLabel}</h3>
                 <div className="calculatorComponent__radioBlock">
-                  {phaseOptions.map(({ label, value }) => (
+                  {phaseOptions.map(({ value }) => (
                     <CustomRadio
-                      key={label}
-                      label={label}
+                      key={value}
+                      label={t[value]}
                       name="phase"
                       value={value}
                       checked={phase === value}
@@ -141,13 +148,13 @@ const CalculatorComponent: FC = () => {
                 </div>
               </div>
               <div className="calculatorComponent__formBlock">
-                <h3>Specify the installation type</h3>
-                <p>Select where the panels will be installed</p>
+                <h3>{t.roofLabel}</h3>
+                <p>{t.roofText}</p>
                 <div className="calculatorComponent__radioBlock">
-                  {typeOptions.map(({ label, value }) => (
+                  {typeOptions.map(({ value }) => (
                     <CustomRadio
-                      key={label}
-                      label={label}
+                      key={value}
+                      label={t[value]}
                       name="type"
                       value={value}
                       checked={type === value}
@@ -160,31 +167,31 @@ const CalculatorComponent: FC = () => {
             </div>
           </div>
           <div className="calculatorComponent__block calculatorComponent__block--right">
-            <h3>Totals</h3>
+            <h3>{t.totals}</h3>
             <CalculatorSavingBlock
-              title="Total system power:"
-              text="Optimal solar system power for your consumption."
+              title={t.totalPower}
+              text={t.totalPowerText}
               value={state.totalPower}
               unit="kW"
               left={true}
             />
             <CalculatorSavingBlock
-              title="Expected annual output"
-              text="The total amount of electricity the system will produce in a year."
+              title={t.annualOutput}
+              text={t.annualOutputText}
               value={state.annualOutput}
               unit="kWh"
               left={true}
             />
             <CalculatorSavingBlock
-              title="Payback period of the system."
-              text="The period of time in which your system will fully pay for itself through saved costs."
+              title={t.payback}
+              text={t.paybackText}
               value={state.payback}
               unit="year"
               left={true}
             />
             <CalculatorSavingBlock
-              title="Payback period (with subsidy consideration)."
-              text="Payback period taking into account the government subsidy."
+              title={t.paybackWithSubsidy}
+              text={t.paybackWithSubsidyText}
               value={state.paybackWithSubsidy}
               unit="year"
               left={true}
@@ -193,20 +200,20 @@ const CalculatorComponent: FC = () => {
         </div>
         <div className="calculatorComponent__bottom">        
           <CalculatorSavingBlock
-            title="Savings over 10 years"
-            text="The total amount of savings over 10 years of operation. (Savings = your income from using solar energy.)"
+            title={t.savings10}
+            text={t.savings10Text}
             value={state.economy10}
             unit="€"
           />        
           <CalculatorSavingBlock
-            title="Savings over 20 years"
-            text="Your savings and income over 20 years of the system's operation."
+            title={t.savings20}
+            text={t.savings20Text}
             value={state.economy20}
             unit="€"
           />
           <CalculatorSavingBlock
-            title="Total cost"
-            text="The total amount, including all costs for equipment, installation, documentation, and taxes."
+            title={t.totalCost}
+            text={t.totalCostText}
             value={state.totalCost}
             unit="€"
             vat={true}
