@@ -160,6 +160,10 @@
             row-gap: 16px;
         }
 
+        @include tablet {
+            align-items: flex-start;
+        }
+
         & p {
             text-align: left;
             font-size: 18px;
@@ -174,6 +178,7 @@
 
         @include mobile {
             flex-direction: column;
+            align-items: flex-start;
             row-gap: 24px;
         }
 
