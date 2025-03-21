@@ -12,9 +12,35 @@
     row-gap: 24px;
     align-items: center;
 
+    @include tablet {
+        row-gap: 16px;
+    }
+
+    @include mobile {
+        row-gap: 24px;
+    }
+
+    & h4 {
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: 500;
+        
+        @include tablet {
+            font-size: 18px;
+            line-height: 24px;
+        }
+    }
+
     &--left {
         align-items: flex-start;
-        
+
+        @include tablet {
+            row-gap: 8px;
+        }
+
+        @include mobile {
+            row-gap: 24px;
+        } 
     }
 
     &__block {
@@ -25,6 +51,15 @@
         align-items: center;
         justify-content: space-between;
         flex-grow: 1;
+        position: relative;
+
+        @include tablet {
+            row-gap: 8px;
+        }
+
+        @include mobile {
+            row-gap: 16px;
+        }
 
         & p {
             text-align: center;
@@ -34,6 +69,17 @@
             width: 100%;
             flex-direction: row;
             justify-content: space-between;
+            
+            @include mobile {
+                flex-direction: column;
+                align-items: flex-start;
+                row-gap: 8px;
+
+                & span {
+                    max-width: 280px;
+                    width: 100%;
+                }
+            }
 
             & p {
                 text-align: left;
@@ -59,8 +105,20 @@
         font-size: 16px;
         line-height: 24px;
 
+        @include tablet {
+            padding: 12px 19px;
+        }
+
+        @include mobile {
+            padding-inline: 48.5px;
+        }
+
         &--left {
             min-width: 129px;
+
+            @include desktop {
+                min-width: 179px;
+            }            
         }
     }
 
@@ -73,6 +131,27 @@
         
         &--border {
             border: 2px solid $orange3-color;
+
+            & .calculatorSavingBlock__block span {
+                text-transform: uppercase;
+                font-weight: 700;
+            }
+        }
+    }
+
+    &__max {
+        position: absolute;
+        top: -25px;
+        color: $black;
+        font-size: 12px;
+        line-height: 16px;
+
+        @include tablet {
+            top: -10px;
+        }
+
+        @include mobile {
+            top: -12px;
         }
     }
 }

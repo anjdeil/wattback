@@ -8,11 +8,14 @@
     &__container {
         display: flex;
         flex-direction: column;
-        row-gap: 47px;
+        row-gap: 44px;
+
+        @include tablet {
+            row-gap: 24px;
+        }
     }
 
-    & h3,
-    & h4 {
+    & h3 {
         font-size: 24px;
         line-height: 32px;
         font-weight: 500;
@@ -23,31 +26,41 @@
         text-align: center;
     }
 
-    & p {
-        font-size: 16px;
-        line-height: 24px;
-    }
 
     &__top {
         display: flex;
         justify-content: space-between;
-        gap: 47px;
+        gap: 44px;
 
-        @include tablet {
+        @include desktop{
            flex-direction: column;
+           gap: 24px;
+        }
+
+        @include mobile {
+            row-gap: 32px;
         }
     }
 
     &__block {
         border: 1px solid $border-color;
         border-radius: 16px;
-        padding: 32px 24px;
-        box-shadow: 0px 4px 40px 0px #0000000D;
+        padding: 36px 24px;
+        box-shadow: 0px 8px 24px 0px $shadow-color;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        row-gap: 40px;
+        row-gap: 40px;    
+        
+        & p {
+            font-size: 16px;
+            line-height: 24px;
+
+            @include tablet {
+                font-size: 14px;
+            }
+        }
 
         &--left {
             width: 59%;
@@ -55,39 +68,97 @@
 
         &--right {
             width: 39%;
-            padding: 32px 40px;
+            padding: 30px 40px;
             border: 1px solid $orange-color;
             row-gap: 18px;
             background: linear-gradient(180deg, $white 0%, $orange-color 100%);
+            
+            & .calculatorSavingBlock__total {
+                padding: 0;
+            }
+        }
+        
+        @include desktop {
+            width: 100%;
+            padding: 16px;
+            row-gap: 24px;
         }
 
         @include tablet {
-            width: 100%;
+            & h3 {
+                font-size: 18px;
+                line-height: 24px;
+            }
+
+            &--right {
+                row-gap: 8px;
+
+                & h3 {
+                    font-size: 24px;
+                    line-height: 32px;
+                }
+            }
         }
+
     }
 
     &__titleBlock {
+        width: 100%;
         display: flex;
         flex-direction: column;
         row-gap: 12px;
         align-items: center;
+
+        & p {
+            font-size: 16px;
+        }
+
+        @include tablet {
+            & h3 {
+                font-size: 24px;
+                line-height: 32px;
+            }
+        }
+
+        @include mobile {
+            & h3,
+            & p {
+                margin-inline: -10px;
+                text-align: center;
+            }
+        }
     }
 
     &__innerBlock {
+        width: 100%;
         padding: 60px 40px;
         border: 1px solid $border-color;
+        box-shadow: 0px 8px 24px 0px $shadow-color;
         border-radius: 12px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         flex-grow: 1;
         row-gap: 40px;
+
+        @include desktop {
+            padding: 16px;
+            row-gap: 24px;
+        }
+
+        @include mobile {
+            row-gap: 32px;
+        }
     }
 
     &__formBlock {
         display: flex;
         flex-direction: column;
         row-gap: 32px;
+
+        @include desktop {
+            row-gap: 16px;
+        }
 
         & p {
             text-align: left;
@@ -101,6 +172,11 @@
         align-items: center;
         gap: 41px;
 
+        @include mobile {
+            flex-direction: column;
+            row-gap: 24px;
+        }
+
         &--bottom {
             gap: 24px;
         }
@@ -108,6 +184,11 @@
         & p {
             text-align: left;
             font-size: 18px;
+
+            @include tablet {
+                font-size: 14px;
+                max-width: 320px;
+            }
         }
     }
 
@@ -123,6 +204,15 @@
         font-size: 16px;
         line-height: 24px;
 
+        @include tablet {
+            max-width: 171px;
+        }
+
+        @include mobile {
+            width: 100%;
+            max-width: 280px;
+        }
+
         &:disabled {
             border: 1px solid $text-grey;
         }
@@ -131,6 +221,11 @@
     &__radioBlock {
         display: flex;
         gap: 40px;
+
+        @include mobile {
+            flex-direction: column;
+            row-gap: 24px;
+        }
     }
 
     &__button {
@@ -140,5 +235,16 @@
 
     &__bottom {
         @include page-grid;
+        column-gap: 3px;
+
+        @include tablet {
+            column-gap: 4px;
+        }
+
+        @include mobile {
+            & .calculatorSavingBlock__total {
+                min-height: 228px;
+            }
+        }
     }
 }

@@ -44,6 +44,7 @@ const CalculatorComponent: FC = () => {
   const [calculatorSettings, setCalculatorSettings] = useState<CalculatorSettings | null>(null);
   const [state, dispatch] = useReducer(reducer, initialState);
   const [loading, setLoading] = useState(true);
+  const [max, setMax] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const { pathname } = useLocation(); 
@@ -79,13 +80,14 @@ const CalculatorComponent: FC = () => {
 
       if (!Array.isArray(phaseData)) return;
 
-      const { number, price } = getPhaseData(phaseData, amount);
-      const totalPower = ((+number * +calculatorSettings.panel_power) / 1000).toFixed(2);
-      const annualOutput = ((+number * +calculatorSettings.hours_per_year * +calculatorSettings.panel_power) / 1000).toFixed(0);
+      const { phaseValue, max } = getPhaseData(phaseData, amount);
+      const totalPower = ((+phaseValue.number * +calculatorSettings.panel_power) / 1000).toFixed(2);
+      const annualOutput = ((+phaseValue.number * +calculatorSettings.hours_per_year * +calculatorSettings.panel_power) / 1000).toFixed(0);
       const economy = +annualOutput * +calculatorSettings.cost_per_kwh;
-      const totalCost = calculateCost(number, price, type, calculatorSettings).toFixed(0);
+      const totalCost = calculateCost(phaseValue.number, phaseValue.price, type, calculatorSettings).toFixed(0);
       const { payback, paybackWithSubsidy, economy10, economy20 } = calculateSavings(economy, totalCost, calculatorSettings.subsidy);
-
+      setMax(max);
+      
       dispatch({ type: 'totalPower', value: totalPower });
       dispatch({ type: 'annualOutput', value: annualOutput });
       dispatch({ type: 'payback', value: payback });
@@ -174,6 +176,8 @@ const CalculatorComponent: FC = () => {
               value={state.totalPower}
               unit="kW"
               left={true}
+              max={max}
+              maxTitle={t[`${phase}Max`]}
             />
             <CalculatorSavingBlock
               title={t.annualOutput}

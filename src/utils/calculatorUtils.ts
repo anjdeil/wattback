@@ -1,10 +1,17 @@
 import { CalculatorSettings, PhaseData } from "../types/types";
 
-export const getPhaseData = (phaseData: PhaseData[], inputAmount: number): PhaseData =>
-    phaseData.find(({ monthly_consumption_cost_from }, i, arr) =>
-        inputAmount >= +monthly_consumption_cost_from &&
-        (!arr[i + 1] || inputAmount < +arr[i + 1].monthly_consumption_cost_from)
-    ) || phaseData[0];
+export const getPhaseData = (
+    phaseData: PhaseData[],
+    inputAmount: number
+): { phaseValue: PhaseData; max: boolean } => {
+    const reversedData = [...phaseData].reverse();
+    const foundPhase = reversedData.find(({ monthly_consumption_cost_from }) => inputAmount > +monthly_consumption_cost_from) || phaseData[0];
+
+    return {
+        phaseValue: foundPhase,
+        max: foundPhase === reversedData[0] && inputAmount > +reversedData[0].monthly_consumption_cost_from
+    };
+};
 
 export const calculateCost = (number: string, price: string, type: string, calculatorSettings: CalculatorSettings) => {
     switch (type) {

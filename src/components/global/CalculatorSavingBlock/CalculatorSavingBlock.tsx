@@ -9,9 +9,11 @@ type CalculatorSavingBlockType = {
     vat?: boolean;
     left?: boolean;
     total?: boolean;
+    max?: boolean;
+    maxTitle?: string;
 }
 
-const CalculatorSavingBlock: FC<CalculatorSavingBlockType> = ({ title, text, value, unit, vat = false, left = false, total = false}) => {
+const CalculatorSavingBlock: FC<CalculatorSavingBlockType> = ({ title, text, value, unit, vat = false, left = false, total = false, max = false, maxTitle}) => {
     const blockClass = `calculatorSavingBlock__block ${left ? 'calculatorSavingBlock__block--left' : ''}`;
     const mainClass = `calculatorSavingBlock ${left ? 'calculatorSavingBlock--left' : ''}`;
     const infoClass = `calculatorSavingBlock__info ${left ? 'calculatorSavingBlock__info--left' : ''}`;
@@ -19,7 +21,7 @@ const CalculatorSavingBlock: FC<CalculatorSavingBlockType> = ({ title, text, val
    
     const infoContent = value ? (
         <span className={infoClass}>
-            {`${value} ${unit}${vat ? ' (VAT included)' : ''}`}
+            {`${value} ${unit}${vat ? ' (excl. VAT)' : ''}`}
         </span>
     ) : (
         <div className={`${infoClass} skeleton-wave`} /> 
@@ -30,6 +32,7 @@ const CalculatorSavingBlock: FC<CalculatorSavingBlockType> = ({ title, text, val
             <div className={mainClass}>
                 <h4>{title}</h4>
                 <div className={blockClass}>
+                    {max && <span className="calculatorSavingBlock__max">{maxTitle ? maxTitle : ''}</span>}
                     <p>{text}</p>
                     {infoContent}
                 </div>
