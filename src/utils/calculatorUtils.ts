@@ -14,14 +14,20 @@ export const getPhaseData = (
 };
 
 export const calculateCost = (number: string, price: string, type: string, calculatorSettings: CalculatorSettings) => {
+    let cost;
+
     switch (type) {
         case 'flat':
-            return (+number * +calculatorSettings.add_pay_for_flat) + +price;
+            cost = (+number * +calculatorSettings.add_pay_for_flat) + +price;
+            break;
         case 'ground':
-            return (+number * +calculatorSettings.add_pay_for_ground + +calculatorSettings.add_pay_for_ground) + +price;
+            cost = (+number * +calculatorSettings.add_pay_for_ground + +calculatorSettings.add_pay_for_ground) + +price;
+            break;
         default:
-            return +price;
+            cost = +price;
     }
+
+    return cost / 1.19;
 };
 
 export const calculateSavings = (economy: number, price: string, subsidy: string) => ({
