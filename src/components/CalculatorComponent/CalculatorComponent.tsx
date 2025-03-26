@@ -125,7 +125,14 @@ const CalculatorComponent: FC = () => {
                     value={amount ?? ''}
                     onChange={e => {
                       const value = e.target.value;
-                      setAmount(value ? +value : 0);
+                      const parsedValue = value === '' ? NaN : +value;
+                      setAmount(parsedValue);
+                    }}
+                    onFocus={() => {
+                      if (amount === 0) setAmount(NaN);
+                    }}
+                      onBlur={() => {
+                        if (isNaN(amount)) setAmount(0);
                     }}
                     className="calculatorComponent__input"
                     required
