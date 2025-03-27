@@ -223,6 +223,10 @@
         &:disabled {
             border: 1px solid $text-grey;
         }
+
+        &:focus {
+            outline: none;
+        }        
     }
 
     &__radioBlock {
