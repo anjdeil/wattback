@@ -1,5 +1,5 @@
 export const fetchCalculatorSettings = async () => {
-    const response = await fetch('https://dodgerblue-sparrow-988860.hostingersite.com/wp-json/v1/calculator-settings');
+    const response = await fetch('https://wattback.com/wp-json/v1/calculator-settings');
 
     if (response.ok) {
         return await response.json();
