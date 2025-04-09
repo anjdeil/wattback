@@ -6,7 +6,7 @@ type CalculatorSavingBlockType = {
     text: string;
     value: string | undefined;
     unit: string;
-    vat?: boolean;
+    vat?: string;
     left?: boolean;
     total?: boolean;
     max?: boolean;
@@ -18,10 +18,10 @@ const CalculatorSavingBlock: FC<CalculatorSavingBlockType> = ({ title, text, val
     const mainClass = `calculatorSavingBlock ${left ? 'calculatorSavingBlock--left' : ''}`;
     const infoClass = `calculatorSavingBlock__info ${left ? 'calculatorSavingBlock__info--left' : ''}`;
     const totalClass = `calculatorSavingBlock__total ${total ? 'calculatorSavingBlock__total--border' : ''}`;
-   
+
     const infoContent = value ? (
         <span className={infoClass}>
-            {`${value} ${unit}${vat ? ' (excl. VAT)' : ''}`}
+            {`${value} ${unit}${vat ? ` ${vat}` : ''}`}
         </span>
     ) : (
         <div className={`${infoClass} skeleton-wave`} /> 

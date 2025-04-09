@@ -30,7 +30,10 @@ const translations: Record<string, Record<string, string>> = {
         savings20Text: "Your savings and income over 20 years of the system's operation.",
         totalCost: "Total Cost",
         totalCostText: "The total amount, including all costs for equipment, installation, documentation, and taxes.",
-
+        kW: "kW",
+        kWh: "kWh",
+        year: "year",
+        vat: "(excl. VAT)",
     },
     ru: {
         title: "Симулятор калькулятора результатов",
@@ -63,6 +66,10 @@ const translations: Record<string, Record<string, string>> = {
         savings20Text: "Ваша экономия и доход за 20 лет работы станции.",
         totalCost: "Итоговая стоимость",
         totalCostText: "Полная сумма, включающая все расходы на оборудование, монтаж и оформление документов, а также налог.",
+        kW: "кВт",
+        kWh: "кВт⋅ч",
+        year: "года",
+        vat: "(без НДС)",
     },
 };
 

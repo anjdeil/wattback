@@ -112,7 +112,7 @@ const CalculatorComponent: FC = () => {
             <div className="calculatorComponent__titleBlock">
               <h3>{t.title}</h3>
               {error && <h4 className="calculatorComponent__error">{error}</h4>}
-              <p>{t.subtitle}</p>
+              {/* <p>{t.subtitle}</p> */}
             </div>
             <div className="calculatorComponent__innerBlock">
               <div className="calculatorComponent__formBlock">
@@ -181,7 +181,7 @@ const CalculatorComponent: FC = () => {
               title={t.totalPower}
               text={t.totalPowerText}
               value={state.totalPower}
-              unit="kW"
+              unit={t.kW}
               left={true}
               max={max}
               maxTitle={t[`${phase}Max`]}
@@ -190,21 +190,21 @@ const CalculatorComponent: FC = () => {
               title={t.annualOutput}
               text={t.annualOutputText}
               value={state.annualOutput}
-              unit="kWh"
+              unit={t.kWh}
               left={true}
             />
             <CalculatorSavingBlock
               title={t.payback}
               text={t.paybackText}
               value={state.payback}
-              unit="year"
+              unit={t.year}
               left={true}
             />
             <CalculatorSavingBlock
               title={t.paybackWithSubsidy}
               text={t.paybackWithSubsidyText}
               value={state.paybackWithSubsidy}
-              unit="year"
+              unit={t.year}
               left={true}
             />
           </div>
@@ -227,7 +227,7 @@ const CalculatorComponent: FC = () => {
             text={t.totalCostText}
             value={state.totalCost}
             unit="€"
-            vat={true}
+            vat={t.vat}
             total={true}
           />
         </div>
